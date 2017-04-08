@@ -1,0 +1,18 @@
+#!/bin/sh
+
+case $1 in
+   config)
+        cat <<'EOM'
+graph_title Mastodon accounts
+graph_vlabel accounts
+graph_category mastodon
+graph_args -l 0
+accounts.label remote accounts
+accounts.min 0
+EOM
+        exit 0;;
+esac
+
+printf "accounts.value "
+echo "SELECT COUNT(*) FROM accounts;" | psql mastodon -tq | head -n 1
+

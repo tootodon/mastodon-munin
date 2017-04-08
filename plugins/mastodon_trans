@@ -1,0 +1,19 @@
+#!/bin/sh
+
+case $1 in
+   config)
+        cat <<'EOM'
+graph_title Octodon accounts with unicode trans symbol in their bio
+graph_vlabel accounts
+graph_category mastodon
+graph_args -l 0
+accounts.label accounts
+accounts.min 0
+EOM
+        exit 0;;
+esac
+
+printf "accounts.value "
+
+echo "select count(*) from accounts where note ilike '%⚧%';" | psql mastodon -tq | head -n 1
+

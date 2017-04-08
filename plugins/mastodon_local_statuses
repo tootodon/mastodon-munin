@@ -1,0 +1,19 @@
+#!/bin/sh
+
+case $1 in
+   config)
+        cat <<'EOM'
+graph_title Mastodon local statuses
+graph_vlabel statuses
+graph_category mastodon
+graph_args -l 0
+local_statuses.label local statuses
+local_statuses.min 0
+EOM
+        exit 0;;
+esac
+
+
+printf "local_statuses.value "
+echo "SELECT COUNT(*) FROM statuses AS s, accounts AS a WHERE a.id=s.account_id AND a.domain IS NULL;" | psql mastodon -tq | head -n 1
+
