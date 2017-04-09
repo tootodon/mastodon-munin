@@ -4,7 +4,7 @@ A few munin plugins for Mastodon:
 * Local and total accounts
 * Local and total toots
 
-Installation:
+Installation: (dont do that in /root)
 ```bash
 git clone https://github.com/0xa/mastodon-munin.git
 cd mastodon-munin/
