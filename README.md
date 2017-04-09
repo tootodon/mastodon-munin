@@ -8,7 +8,7 @@ Installation:
 ```bash
 git clone https://github.com/0xa/mastodon-munin.git
 cd mastodon-munin/
-ln -s $PWD/plugins/mastodon-{accounts,local_accounts,statuses,local_statuses} /etc/munin/plugins/
+ln -s $PWD/plugins/mastodon_{accounts,local_accounts,statuses,local_statuses} /etc/munin/plugins/
 ln -s $PWD/plugins-conf.d/mastodon /etc/munin/plugin-conf.d/
 service munin-node restart
 ```
