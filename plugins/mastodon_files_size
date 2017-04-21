@@ -1,0 +1,34 @@
+#!/bin/sh
+
+case $1 in
+   config)
+        cat <<'EOM'
+graph_title Mastodon Files Size
+graph_vlabel Files Size (MB)
+graph_category mastodon
+graph_args -l 0
+graph_total Total
+media.label Media Attachments
+media.draw AREA
+media.min 0
+header.label Header
+header.draw STACK
+header.min 0
+avatar.label Avatar
+avatar.draw STACK
+avatar.min 0
+EOM
+        exit 0;;
+esac
+
+# How many bit in 1 mebibit? The answer is 1048576.
+
+printf "media.value "
+echo "SELECT SUM(file_file_size)/1048576 FROM media_attachments;" | psql mastodon_production -tq | head -n 1
+
+printf "header.value "
+echo "SELECT SUM(header_file_size)/1048576 FROM accounts;" | psql mastodon_production -tq | head -n 1
+
+printf "avatar.value "
+echo "SELECT SUM(avatar_file_size)/1048576 FROM accounts;" | psql mastodon_production -tq | head -n 1
+
