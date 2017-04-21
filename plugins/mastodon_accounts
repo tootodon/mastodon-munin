@@ -14,5 +14,5 @@ EOM
 esac
 
 printf "accounts.value "
-echo "SELECT COUNT(*) FROM accounts;" | psql mastodon -tq | head -n 1
+echo "SELECT COUNT(*) FROM accounts;" | psql mastodon_production -tq | head -n 1
 

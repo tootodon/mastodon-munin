@@ -14,6 +14,6 @@ EOM
 esac
 
 printf "accounts.value "
-echo "SELECT COUNT(*) FROM accounts WHERE domain IS NULL;" | psql mastodon -tq | head -n 1
+echo "SELECT COUNT(*) FROM accounts WHERE domain IS NULL;" | psql mastodon_production -tq | head -n 1
 
 

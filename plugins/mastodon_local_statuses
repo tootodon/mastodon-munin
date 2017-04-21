@@ -15,5 +15,5 @@ esac
 
 
 printf "local_statuses.value "
-echo "SELECT COUNT(*) FROM statuses AS s, accounts AS a WHERE a.id=s.account_id AND a.domain IS NULL;" | psql mastodon -tq | head -n 1
+echo "SELECT COUNT(*) FROM statuses AS s, accounts AS a WHERE a.id=s.account_id AND a.domain IS NULL;" | psql mastodon_production -tq | head -n 1
 

@@ -15,7 +15,7 @@ esac
 
 
 printf "statuses.value "
-echo "SELECT COUNT(*) FROM statuses;" | psql mastodon -tq | head -n 1
+echo "SELECT COUNT(*) FROM statuses;" | psql mastodon_production -tq | head -n 1
 
 
 
