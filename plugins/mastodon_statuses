@@ -8,6 +8,7 @@ graph_vlabel statuses
 graph_category mastodon
 graph_args -l 0
 statuses.label statuses
+statuses.draw AREA
 statuses.min 0
 EOM
         exit 0;;
