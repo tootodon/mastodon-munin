@@ -1,0 +1,18 @@
+#!/bin/sh
+
+case $1 in
+   config)
+        cat <<'EOM'
+graph_title Mastodon connected instances
+graph_vlabel Number of connected instances
+graph_category mastodon
+graph_args -l 0
+instances.label Instances
+instances.min 0
+EOM
+        exit 0;;
+esac
+
+printf "instances.value "
+echo "SELECT COUNT(DISTINCT(domain)) FROM accounts;" | psql mastodon_production -tq | head -n 1
+
