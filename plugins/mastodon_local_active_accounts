@@ -1,0 +1,31 @@
+#!/bin/sh
+
+case $1 in
+   config)
+        cat <<'EOM'
+graph_title Mastodon local - active users
+graph_vlabel Number of active users on Mastodon
+graph_category mastodon
+graph_args -l 0
+active1.label Active users over 24 hours
+active1.draw LINE2
+active1.min 0
+active7.label Active users over 7 days
+active7.draw LINE2
+active7.min 0
+active30.label Active users over 30 days
+active30.draw LINE2
+active30.min 0
+EOM
+        exit 0;;
+esac
+
+printf "active1.value "
+echo "SELECT COUNT(id) FROM (SELECT DISTINCT u.id FROM statuses s JOIN users u ON s.account_id = u.account_id WHERE s.created_at > NOW() - INTERVAL '1 DAYS' ORDER BY u.id) u;" | psql mastodon_production -tq | head -n 1
+
+printf "active7.value "
+echo "SELECT COUNT(id) FROM (SELECT DISTINCT u.id FROM statuses s JOIN users u ON s.account_id = u.account_id WHERE s.created_at > NOW() - INTERVAL '7 DAYS' ORDER BY u.id) u;" | psql mastodon_production -tq | head -n 1
+
+printf "active30.value "
+echo "SELECT COUNT(id) FROM (SELECT DISTINCT u.id FROM statuses s JOIN users u ON s.account_id = u.account_id WHERE s.created_at > NOW() - INTERVAL '30 DAYS' ORDER BY u.id) u;" | psql mastodon_production -tq | head -n 1
+
