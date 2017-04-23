@@ -3,7 +3,7 @@
 case $1 in
    config)
         cat <<'EOM'
-graph_title Mastodon Files Size
+graph_title Mastodon local - Files size
 graph_vlabel Files Size (MB)
 graph_category mastodon
 graph_args -l 0

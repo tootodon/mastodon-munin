@@ -3,7 +3,7 @@
 case $1 in
    config)
         cat <<'EOM'
-graph_title Mastodon local accounts
+graph_title Mastodon local - Accounts
 graph_vlabel accounts
 graph_category mastodon
 graph_args -l 0

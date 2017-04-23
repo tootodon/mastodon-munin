@@ -3,7 +3,7 @@
 case $1 in
    config)
         cat <<'EOM'
-graph_title Mastodon local - active users
+graph_title Mastodon local - Active users
 graph_vlabel Number of active users on Mastodon
 graph_category mastodon
 graph_args -l 0
