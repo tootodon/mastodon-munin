@@ -21,14 +21,12 @@ EOM
         exit 0;;
 esac
 
-# How many bit in 1 mebibit? The answer is 1048576.
-
 printf "media.value "
-echo "SELECT SUM(file_file_size)/1048576 FROM media_attachments;" | psql mastodon_production -tq | head -n 1
+echo `du -s /home/mastodon/live/public/system/media_attachments/ | awk '{print $1/1024;}'`
 
 printf "header.value "
-echo "SELECT SUM(header_file_size)/1048576 FROM accounts;" | psql mastodon_production -tq | head -n 1
+echo `du -s /home/mastodon/live/public/system/accounts/headers | awk '{print $1/1024;}'`
 
 printf "avatar.value "
-echo "SELECT SUM(avatar_file_size)/1048576 FROM accounts;" | psql mastodon_production -tq | head -n 1
+echo `du -s /home/mastodon/live/public/system/accounts/avatars | awk '{print $1/1024;}'`
 
