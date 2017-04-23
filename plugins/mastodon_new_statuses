@@ -1,0 +1,22 @@
+#!/bin/sh
+
+case $1 in
+   config)
+        cat <<'EOM'
+graph_title Mastodon new statuses
+graph_vlabel statuses (last hour)
+graph_category mastodon
+graph_args -l 0
+statuses.label statuses
+statuses.draw LINE2
+statuses.min 0
+EOM
+        exit 0;;
+esac
+
+
+printf "statuses.value "
+echo "SELECT COUNT(*) FROM statuses WHERE created_at > NOW() - INTERVAL '1 HOURS';" | psql mastodon_production -tq | head -n 1
+
+
+
