@@ -1,8 +1,12 @@
 # mastodon-munin
 ## A few munin plugins for Mastodon:
 
-* Local and total accounts
-* Local and total toots
+* Local and Global accounts
+* Local and Global toots
+* Global connected instances
+* Local active accounts
+* Local files size
+* Local new toots
 
 ## Configuration:
 
